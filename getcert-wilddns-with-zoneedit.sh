@@ -140,7 +140,7 @@ if [ ! -f $CONFIG ] ; then
 fi
 
 # Source the config file
-. $CONFIG
+# . $CONFIG
 
 if [ "$ZONEEDIT_DYN_TOKEN" = "token" ] ; then
 	cat $CONFIG
