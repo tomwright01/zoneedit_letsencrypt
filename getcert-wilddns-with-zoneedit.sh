@@ -129,7 +129,7 @@ if [ -f $ZONEEDIT_DYN_TOKEN_FILE ]; then
     echo "ZONEEDIT_DYN_TOKEN="`cat $ZONEEDIT_DYN_TOKEN_FILE` >> $CONFIG
 fi
 
-Create dummy config file if there is none yet
+# Create dummy config file if there is none yet
 if [ ! -f $CONFIG ] ; then
 	if [ ! -d `dirname $CONFIG` ] ; then
 		mkdir -p `dirname $CONFIG`
@@ -147,7 +147,7 @@ if [ ! -f $CONFIG ] ; then
 	chmod 600 $CONFIG
 fi
 
- Source the config file
+ # Source the config file
 . $CONFIG
 
 if [ "$ZONEEDIT_DYN_TOKEN" = "token" ] ; then
