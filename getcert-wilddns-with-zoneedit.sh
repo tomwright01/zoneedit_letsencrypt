@@ -118,36 +118,37 @@ else
        ZONEEDIT_USER=username
 fi
 
+Path to config file
+CONFIG=/etc/sysconfig/zoneedit/$BOTDOMAIN.cfg
+
+
 if [ -f $ZONEEDIT_USERNAME_FILE ]; then
-    ZONEEDIT_USER=`cat $ZONEEDIT_USERNAME_FILE`
+    echo "ZONEEDIT_USER="`cat $ZONEEDIT_USERNAME_FILE` > $CONFIG
 fi
 if [ -f $ZONEEDIT_DYN_TOKEN_FILE ]; then
-    ZONEEDIT_DYN_TOKEN=`cat $ZONEEDIT_DYN_TOKEN_FILE`
+    echo "ZONEEDIT_DYN_TOKEN="`cat $ZONEEDIT_DYN_TOKEN_FILE` >> $CONFIG
 fi
 
-# Path to config file
-# CONFIG=/etc/sysconfig/zoneedit/$BOTDOMAIN.cfg
+Create dummy config file if there is none yet
+if [ ! -f $CONFIG ] ; then
+	if [ ! -d `dirname $CONFIG` ] ; then
+		mkdir -p `dirname $CONFIG`
+	fi
+	echo "# Zoneedit config for domain $BOTDOMAIN" > $CONFIG
+	echo "# get your token, by:" >> $CONFIG
+	echo "#   1- Go to your DNS settings for your domain" >> $CONFIG
+	echo "#   2- Click on Domaines top level menu" >> $CONFIG
+	echo "#   3- Select the DNS Settings meny entry" >> $CONFIG
+	echo "#   4- Click on the wrench by the DYN records secion" >> $CONFIG
+	echo "#   5- Scroll to bottom and click the view on the DYN Authention token" >> $CONFIG#
+	echo "" >> $CONFIG
+	echo "ZONEEDIT_USERNAME=$ZONEEDIT_USER" >> $CONFIG
+	echo "ZONEEDIT_DYN_TOKEN=token" >> $CONFIG
+	chmod 600 $CONFIG
+fi
 
-# Create dummy config file if there is none yet
-# if [ ! -f $CONFIG ] ; then
-#	if [ ! -d `dirname $CONFIG` ] ; then
-#		mkdir -p `dirname $CONFIG`
-#	fi
-#	echo "# Zoneedit config for domain $BOTDOMAIN" > $CONFIG
-#	echo "# get your token, by:" >> $CONFIG
-#	echo "#   1- Go to your DNS settings for your domain" >> $CONFIG
-#	echo "#   2- Click on Domaines top level menu" >> $CONFIG
-#	echo "#   3- Select the DNS Settings meny entry" >> $CONFIG
-#	echo "#   4- Click on the wrench by the DYN records secion" >> $CONFIG
-#	echo "#   5- Scroll to bottom and click the view on the DYN Authention token" >> $CONFIG#
-#	echo "" >> $CONFIG
-#	echo "ZONEEDIT_USERNAME=$ZONEEDIT_USER" >> $CONFIG
-#	echo "ZONEEDIT_DYN_TOKEN=token" >> $CONFIG
-#	chmod 600 $CONFIG
-#fi
-
-# Source the config file
-#. $CONFIG
+ Source the config file
+. $CONFIG
 
 if [ "$ZONEEDIT_DYN_TOKEN" = "token" ] ; then
 	cat $CONFIG
