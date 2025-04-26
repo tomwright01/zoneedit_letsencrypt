@@ -118,7 +118,7 @@ else
        ZONEEDIT_USER=username
 fi
 
-Path to config file
+# Path to config file
 CONFIG=/etc/sysconfig/zoneedit/$BOTDOMAIN.cfg
 
 
