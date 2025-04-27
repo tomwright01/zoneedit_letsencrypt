@@ -179,8 +179,8 @@ OUT=$TMPDIR/$NAME.html
 CURL "https://dynamic.zoneedit.com/txt-create.php?host=$txt_name.$txt_domain&rdata=$txt_value" $NAME
 #<SUCCESS CODE="200" TEXT="_acme-challenge.jsgagnon.com TXT updated to 8dBAg83rWjrwn3fRnPkLCoFJQrOlQL_1QREpYP4A62E" ZONE="jsgagnon.com">
 
-echo "`date`: Wait 15 seconds - zoneedit minimum wait is 10 seconds"
-sleep 15
+echo "`date`: Wait 65 seconds - zoneedit minimum wait is 60 seconds"
+sleep 60
 
 SUCCESS=""
 if [ `grep -c SUCCESS $OUT` -gt 0 ] ; then
