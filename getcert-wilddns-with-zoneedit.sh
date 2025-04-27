@@ -228,8 +228,8 @@ if [ -f $SAVEFILE ] ; then
 		fi
 		curl -s -u$ZONEEDIT_USERNAME:$ZONEEDIT_DYN_TOKEN "https://dynamic.zoneedit.com/txt-delete.php?host=_acme-challenge.$BOTDOMAIN&rdata=$txtval" > $OUT 2>&1
 		#<SUCCESS CODE="200" TEXT="_acme-challenge.jsgagnon.com TXT with rdata 8dBAg83rWjrwn3fRnPkLCoFJQrOlQL_1QREpYP4A62E deleted" ZONE="jsgagnon.com">
-		echo "`date`: Wait 15 seconds - zoneedit minium wait is 10 seconds"
-		sleep 15
+		echo "`date`: Wait 65 seconds - zoneedit minium wait is 60 seconds"
+		sleep 65
 		if [ $DEBUG ] ; then
 			echo "`date`: $OUT" 
 		fi
