@@ -36,7 +36,7 @@ VERBOSE=""
 DRYRUN=""
 EMAIL=""
 DAYS_BEFORE_AUTO_RENEW=10
-CERTBOT_EXE=certbot
+CERTBOT_EXE=certbot-auto
 while [ $# -gt 0 ] ; do
 	if [ "$1" = "-a" ] ; then
 		FULL_AUTO=1
